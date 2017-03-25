@@ -1,0 +1,16 @@
+#ngb {
+	text-align: center;
+	font-weight: bolder;
+	color: #ffa0a0;
+	clear: both;
+	width: 200px;
+}
+
+#b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b9 {
+	width: 50px;
+	height: 50px;
+}
+
+#b3, #b6, #b9{
+	clear: right;
+}

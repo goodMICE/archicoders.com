@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Chat</title>
-		<script scr="./../../scripts/php/chat.php"></script>
 	</head>
 	<body>
-		<form method="POST" action="./../../scripts/php/chat.php">
-			<input type="text" name="messageBox" value=""/>
+		<form method="POST" action="?">
+			<input type="text" name="mBox" value="Message" onfocus="javascript:if(value='Message')value=''" />
 			<input type="submit" value="Add message"/>
 		</form>
+		<br>
+		<a href="./../../index.php">Main Page</a>
 	</body>
 </html>

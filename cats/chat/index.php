@@ -1,8 +1,5 @@
 <?php
 include 'index.html';
-include '/scripts/message.php';
-
-reload();
 
 if(isset($_POST['mBox'])){
 	$mes = $_POST['mBox'];

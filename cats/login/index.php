@@ -1,4 +1,4 @@
 <?php
 include 'index.html';
-include '/scripts/tech.php';
+include '/scripts/login.php';
 ?>

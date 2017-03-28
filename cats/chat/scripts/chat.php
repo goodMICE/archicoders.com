@@ -1,15 +1,10 @@
 <?php
-include './../../login/scripts/login.php';
-
+include './../login/scripts/login.php';
+$is_logined = false;
 if(isset($_COOKIE['arhicspass']) && isset($_COOKIE['arhicslogin']))
-	check_data($_COOKIE['arhicslogin'], $_COOKIE['arhicspass']);
+	$is_logined = check_data($_COOKIE['arhicslogin'], $_COOKIE['arhicspass']);
 if(!$is_logined)
-	echo <<<END
-	<script type='text/javasctipt'>
-		window.location = 'http://arhicoders.com/login/';
-	</script>"
-END;
-
+		header ('Location: http://www.arhicoders.com/cats/login/');
 
 if(isset($_POST['message'])){
 	if(isset($_COOKIE['arhicslaction']))
@@ -18,13 +13,13 @@ if(isset($_POST['message'])){
 	$message = htmlspecialchars($_POST['message']);
 	if($message == "")
 		return;
-	$db	= mysqli_connect("localhost", "mesuser", "") or die("Error: ".mysqli_error($db));
+	$db	= mysqli_connect("localhost", "mesuser", "SzLJ6B9SLzZ4ZCKK") or die("Error: ".mysqli_error($db));
 	mysqli_select_db($db, "acoders") or die("Error: ".mysqli_error($db));
 	
 	$dt = new DateTime();
 	$date= $dt->format('Y-m-d H:i:s');
 
-	$request="INSERT messages(name, message, date) VALUES('{$_COOKIE['arhicslogin']}', '$message', '$date')";
+	$request="INSERT messages(id, name, message, date) VALUES(0, '{$_COOKIE['arhicslogin']}', '$message', '$date')";
 	mysqli_query($db, $request) or die("Error: ".mysqli_error($db));
 	mysqli_close($db);
 

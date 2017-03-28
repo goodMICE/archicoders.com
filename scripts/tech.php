@@ -1,4 +1,9 @@
 <?php
+	if(isset($_COOKIE['arhicslaction'])){
+		$lastrequest = $_COOKIE['arhicslaction'];
+	}else{
+		$lastrequest = 0;
+	}
 
 	if(isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['textfield'])){
 		$name = htmlspecialchars($_POST['name']);
@@ -24,14 +29,17 @@
 		if($onbase){
 			$dt = new DateTime();
 			$date= $dt->format('Y-m-d H:i:s');
-			$lastrequest = time();
-			mysqli_query($db, "INSERT profiles(id, name, mail, phone, joindate, role, lastrequest) VALUES(0,'{$name}','{$mail}','null','{$date}','null', {$lastrequest});") or die("Error".mysqli_error($db));
-			mysqli_free_result($result);
+			$request = "INSERT profiles(id, name, mail, phone, joindate, role, lastrequest) VALUES(0,'{$name}','{$mail}','null','{$date}','null', {$lastrequest})";
+			mysqli_query($db, $request) or die("Error".mysqli_error($db));
 			mysqli_close($db);
 		}
 		$onbase = true;
 
-		if($lastrequest+30 < time())
+		mysqli_free_result($result);
+
+		if($lastrequest+30 < time()){
 			mail("hamel2517@gmail.com", "Для техподдержки ({$name})", $text, "From: $mail");
+			setcookie('arhicslaction', time(), time()+60*60*24);
+		}
 	}
 ?>

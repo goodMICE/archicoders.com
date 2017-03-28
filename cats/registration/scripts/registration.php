@@ -1,4 +1,14 @@
 <?php
+include './../../login/scripts/login.php';
+
+if(isset($_COOKIE['arhicspass']) && isset($_COOKIE['arhicslogin']))
+	check_data($_COOKIE['arhicslogin'], $_COOKIE['arhicspass']);
+if($is_logined)
+	echo <<<END
+	<script type="text/javascript">
+		window.location = 'http://arhicoders.com/';
+	</script>
+END;
 
 $mail_free = false;
 $login_free = false;

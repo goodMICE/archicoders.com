@@ -22,7 +22,7 @@ if(isset($_POST['message'])){
 	$request="INSERT messages(id, name, message, date) VALUES(0, '{$_COOKIE['arhicslogin']}', '$message', '$date')";
 	mysqli_query($db, $request) or die("Error: ".mysqli_error($db));
 	mysqli_close($db);
-
+	
 	setcookie('arhicslaction', time(), time()+60*60*24);
 }
 ?>

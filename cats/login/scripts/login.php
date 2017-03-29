@@ -4,12 +4,13 @@ $is_logined = false;
 if(isset($_COOKIE['arhicspass']) && isset($_COOKIE['arhicslogin']))
 	check_data($_COOKIE['arhicslogin'], $_COOKIE['arhicspass']);
 
-if (isset($_POST['login']) && isset($_POST['password']))
+if (isset($_POST['llogin']) && isset($_POST['lpassword']))
 	check_data($_POST['login'], $_POST['password']);
 
 function check_data($login, $password){
 	$login = strtolower(htmlspecialchars($login));
-	$password = htmlspecialchars($login);
+	echo $login;
+	$password = htmlspecialchars($password);
 	if($login == "" || $password == "")
 		return false;
 
@@ -19,7 +20,9 @@ function check_data($login, $password){
 	$result = mysqli_query($db, $query) or die("Error: ".mysqli_error($db));
 	while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 		$salt = $line['salt'];
-		if(crypt(crypt($password, $salt), $salt.$password.$salt) == $line['password']){
+		$cpass = crypt(crypt($password, $salt), $salt.$password.$salt);
+		echo "{$cpass} ?= {$line['password']}";
+		if($cpass == $line['password']){
 			setcookie("arhicslogin", $login, time()+24*60*60);
 			setcookie("arhicspass", $password, time()+24*60*60);
 			mysqli_free_result($db, $result);

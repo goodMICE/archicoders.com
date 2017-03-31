@@ -2,15 +2,14 @@
 
 if(isset($_COOKIE['arhicspass']) && isset($_COOKIE['arhicslogin'])){
 	$is_logined = check_data($_COOKIE['arhicslogin'], $_COOKIE['arhicspass']);
-	if($is_logined)
-		header ('Location: http://www.arhicoders.com/');
 }
 
 if (isset($_POST['llogin']) && isset($_POST['lpassword'])){
 	$is_logined = check_data($_POST['llogin'], $_POST['lpassword']);
-	if($is_logined)
-		header ('Location: http://www.arhicoders.com/');
 }
+
+if($is_logined)
+	header ('Location: http://www.arhicoders.com/');
 
 function check_data($login, $password){
 	$login = strtolower(htmlspecialchars($login));

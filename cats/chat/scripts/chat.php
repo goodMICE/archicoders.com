@@ -10,7 +10,14 @@ $db = mysqli_connect("localhost", "mesuser", "SzLJ6B9SLzZ4ZCKK") or die("Error: 
 mysqli_select_db($db, "acoders") or die("Error: ".mysqli_error($db));
 $result = mysqli_query($db, "SELECT * FROM messages") or die("Error: ".mysqli_error($db));
 while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {
-	
+	echo <<<END
+	<form method="post">
+		<input type="hidden" name="answerId" value="{$line['id']}"/>
+		<pre>{$line['name']}({$line['date']})</pre>
+		<pre>{$line['message']}</pre>
+		<input type="submit" value="Answer"/>
+	</form>
+END;
 }
 
 if(isset($_POST['message'])){
@@ -31,5 +38,6 @@ if(isset($_POST['message'])){
 	mysqli_close($db);
 	
 	setcookie('arhicslaction', time(), time()+60*60*24);
+	unset($_POST['message']);
 }
 ?>

@@ -76,13 +76,11 @@ function salt_gen(){
 }
 
 if(isset($_POST['login'])  && isset($_POST['mail']) && isset($_POST['password'])){
-	if(!$pass_free){
-		return;
-	}
+	if(!$pass_free)
+		die("Password isn't free!");
 
-	if(!$mail_free || !$login_free){
-		return;
-	}
+	if(!$mail_free || !$login_free)
+		die("E-mail or Login aren't free!");
 
 	$login = strtolower(htmlspecialchars($_POST['login']));
 	$mail = strtolower(htmlspecialchars($_POST['mail']));
@@ -104,5 +102,8 @@ if(isset($_POST['login'])  && isset($_POST['mail']) && isset($_POST['password'])
 	setcookie("arhicslogin", $login, time()+24*60*60);
 	setcookie("arhicspass", $password, time()+24*60*60);
 	header ('Location: http://www.arhicoders.com/');
+	unset($_POST['login']);
+	unset($_POST['password']);
+	unset($_POST['mail']);
 }
 ?>

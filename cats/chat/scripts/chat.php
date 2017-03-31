@@ -6,15 +6,22 @@ if(isset($_COOKIE['arhicspass']) && isset($_COOKIE['arhicslogin']))
 if(!$is_logined)
 		header ('Location: http://www.arhicoders.com/cats/login/');
 
+$db = mysqli_connect("localhost", "mesuser", "SzLJ6B9SLzZ4ZCKK") or die("Error: ".mysqli_error($db));
+mysqli_select_db($db, "acoders") or die("Error: ".mysqli_error($db));
+$result = mysqli_query($db, "SELECT * FROM messages") or die("Error: ".mysqli_error($db));
+while ($line = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+	
+}
+
 if(isset($_POST['message'])){
 	if(isset($_COOKIE['arhicslaction']))
-		if($_COOKIE['arhicslaction']+2.5 > time())
+		if($_COOKIE['arhicslaction']+1 > time())
 			return;
 	$message = htmlspecialchars($_POST['message']);
 	if($message == "")
 		return;
 	$db	= mysqli_connect("localhost", "mesuser", "SzLJ6B9SLzZ4ZCKK") or die("Error: ".mysqli_error($db));
-	mysqli_select_db($db, "acoders") or die("Error: ".mysqli_error($db));
+	mysqli_select_db($db, "acoders")or die("Error: ".mysqli_error($db));
 	
 	$dt = new DateTime();
 	$date= $dt->format('Y-m-d H:i:s');

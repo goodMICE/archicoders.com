@@ -89,7 +89,7 @@ if(isset($_POST['login'])  && isset($_POST['mail']) && isset($_POST['password'])
 	$password = htmlspecialchars($_POST['password']);
 
 	$salt = salt_gen();
-	$pass_hex = crypt(crypt($password, $salt), $salt.$password.$salt);
+	$pass_hex = crypt(crypt($password, '$6$'.$salt), '$6$'.$salt.$password.$salt);
 
 	$date= time();
 
@@ -98,7 +98,7 @@ if(isset($_POST['login'])  && isset($_POST['mail']) && isset($_POST['password'])
 	$db=mysqli_connect("localhost", "reguser", "HN2UWaMCQrJSLzKa") or Error($db);
 	mysqli_select_db($db, "acoders") or Error($db);
 
-	$request = "INSERT Profiles(guid, login, password, salt, mail, joindate) VALUES('{$guid}', '{$login}', '{$pass_hex}', '{$salt}', '{$mail}', '{$date}')";
+	$request = "INSERT Profiles(guid, login, password, salt, mail, joindate) VALUES('{$guid}', '{$login}', '{$pass_hex}', '{$salt}', '{$mail}', FROM_UNIXTIME({$date}))";
 	mysqli_query($db, $request) or Error($db);
 	mysqli_close($db);
 	

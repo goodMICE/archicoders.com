@@ -23,7 +23,7 @@ function check_data($login, $password){
 	$result = mysqli_query($db, $query) or Error($db);
 	while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		$salt = $line['salt'];
-		$cpass = crypt(crypt($password, $salt), $salt.$password.$salt);
+		$cpass = crypt(crypt($password, '$6$'.$salt), '$6$'.$salt.$password.$salt);
 		if($cpass == $line['password']){
 			setcookie("arhicslogin", $login, time()+24*60*60, "/");
 			setcookie("arhicspass", $password, time()+24*60*60, "/");
@@ -40,6 +40,6 @@ function check_data($login, $password){
 function Error($db){
 	$isTest = true;
 	if($isTest)
-		die("Error: ".mysqli_error($db);
+		die("Error: ".mysqli_error($db));
 }
 ?>

@@ -14,7 +14,7 @@ function GetIP($ip=''){
 
 function GetLocale(){
 	$ip = GetIP();
-	$blocks = split("[.:]", $ip);
+	$blocks = split('.', $ip);
 	switch ($ip) {
 		case 'value':
 			return 'ru_RU';
@@ -24,7 +24,16 @@ function GetLocale(){
 	}
 }
 
-function GetText($key_text, $locale='', $guid='', $path=''){
+function GetText($text, $locale='', $guid='', $path=''){
+	$keys = split('.', $text);
+	$out='';
+	foreach ($sent as $keys){
+		$out.=GetSent($sent, $locale, $guid, $path);
+	}
+	return $out;
+}
+
+function GetSent($key_text, $locale='', $guid='', $path=''){
 	$locale = $locale=='' ? GetLocale() : $locale;
 	
 	if($guid != '' && $path == ''){

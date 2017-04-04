@@ -1,0 +1,13 @@
+sing_out:{.(ru_RU).,Выйти.}{.(en_US).,Sing out.};
+sing_in:{.(ru_RU).,Войти.}{.(en_US).,Sing in.};
+sing_up:{.(ru_RU).,Зарегистрироваться.}{.(en_US).,Sing up.};
+title:{.(ru_RU).,Оффициальный сайт Arhicoders.}{.(en_US).,Archicoders Official WebSite.};
+chat:{.(ru_RU).,Чат.}{.(en_US).,Chat.};
+contacts:{.(ru_RU).,Контакты.}{.(en_US).,Contacts.};
+content:{.(ru_RU).,Контент.}{.(en_US).,Content.};
+faq:{.(ru_RU).,Фак.}{.(en_US).,Faq.};
+forum:{.(ru_RU).,Форум.}{.(en_US).,Forum.};
+group:{.(ru_RU).,Группа.}{.(en_US).,Group.};
+info:{.(ru_RU).,Информация.}{.(en_US).,Info.};
+send:{.(ru_RU).,Отправить.}{.(en_US).,Send.};
+lang:{.(ru_RU).,Русский.}{.(en_US).,English.};

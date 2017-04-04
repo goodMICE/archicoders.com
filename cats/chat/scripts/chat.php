@@ -11,6 +11,7 @@ mysqli_select_db($db, "acoders") or Error($db);
 $result = mysqli_query($db, "SELECT * FROM chat ORDER BY date DESC ") or Error($db);
 while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	$result2= mysqli_query($db, "SELECT guid, name, login FROM profiles") or Error($db);
+	$name='';
 	while($line2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)){
 		if($line2['guid'] == $line['senderguid']){
 			$name = trim($line2['name']);
